@@ -1,0 +1,30 @@
+type Query {
+    getAllUsers: [User]
+    getUserById(id: ID!): User
+}
+
+type Mutation {
+    createUser(input: UserInput!): User
+    validateUser(email: String!, password: String!): User # ✅ Nueva mutación para validar credenciales
+    updateUser(id: ID!, input: UserInput!): User
+    updateAllUsers(input: UserInput!): [User]
+    deleteUser(id: ID!): String
+}
+
+input UserInput {
+    first_name: String
+    last_name: String
+    identification_number: String
+    email: String
+    password_hash: String
+    phone_number: String
+}
+
+type User {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    identification_number: String!
+    email: String!
+    phone_number: String!
+}
