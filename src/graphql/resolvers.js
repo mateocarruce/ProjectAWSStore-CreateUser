@@ -16,7 +16,7 @@ const resolvers = {
                 console.log("✅ Usuario creado exitosamente:", user.toJSON());
 
                 const instances = [
-                    'http://127.0.0.1:5001/sync-create',
+                    'http://127.0.0.1:5006/sync-create',
                     'http://127.0.0.1:5002/sync-create',
                     'http://127.0.0.1:5003/sync-create'
                 ];
