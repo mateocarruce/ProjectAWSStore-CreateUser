@@ -20,6 +20,7 @@ if (!fs.existsSync(schemaPath)) {
     process.exit(1);
 }
 
+// ✅ Leer el esquema GraphQL
 const typeDefs = fs.readFileSync(schemaPath, 'utf-8');
 
 // ✅ Sincronizar base de datos antes de iniciar los servidores

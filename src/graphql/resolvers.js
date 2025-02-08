@@ -17,8 +17,8 @@ const resolvers = {
 
                 const instances = [
                     'http://127.0.0.1:5006/sync-create',
-                    'http://127.0.0.1:5002/sync-create',
-                    'http://127.0.0.1:5003/sync-create'
+                    'http://127.0.0.1:5007/sync-create',
+                    'http://127.0.0.1:5008/sync-create'
                 ];
 
                 for (const instance of instances) {

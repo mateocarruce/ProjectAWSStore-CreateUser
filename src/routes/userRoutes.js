@@ -25,7 +25,7 @@ router.post('/sync-create', async (req, res) => {
     }
 });
 
-// ✅ Endpoint para sincronizar actualización de usuarios desde otros microservicios
+// ✅ Endpoint para sincronizar actualización de usuarios
 router.post('/sync-update', async (req, res) => {
     console.log('📌 Solicitud recibida en /sync-update:', req.body);
     const { id, first_name, last_name, identification_number, email, password_hash, phone_number } = req.body;
@@ -46,7 +46,7 @@ router.post('/sync-update', async (req, res) => {
     }
 });
 
-// ✅ Endpoint para sincronizar eliminación de usuarios desde otros microservicios
+// ✅ Endpoint para sincronizar eliminación de usuarios
 router.post('/sync-delete', async (req, res) => {
     console.log('📌 Solicitud recibida en /sync-delete:', req.body);
     const { id } = req.body;
@@ -67,4 +67,18 @@ router.post('/sync-delete', async (req, res) => {
     }
 });
 
-module.exports = router; // ✅ Asegurar que `router` se exporta correctamente
+// ✅ Endpoint para obtener todos los usuarios
+router.get('/get-all-users', async (req, res) => {
+    try {
+        console.log("📌 Solicitando todos los usuarios de UserService...");
+        const users = await User.findAll();
+        console.table(users.map(u => ({ id: u.id, email: u.email }))); // ✅ Imprimir en tabla
+
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("❌ Error obteniendo usuarios:", error);
+        res.status(500).json({ error: "Error obteniendo usuarios" });
+    }
+});
+
+module.exports = router; // ✅ Exportar correctamente
