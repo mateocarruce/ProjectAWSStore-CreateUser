@@ -21,7 +21,7 @@ const resolvers = {
         //            'http://127.0.0.1:5006/sync-create',
        //             'http://127.0.0.1:5007/sync-create',
        //             'http://127.0.0.1:5008/sync-create'
-     ///           ];
+     ///    //       ];
                 const instances = [
                     `http://${process.env.DB_HOST_READ}:5006/sync-create`,
                     `http://${process.env.DB_HOST_UPDATE}:5007/sync-create`,
