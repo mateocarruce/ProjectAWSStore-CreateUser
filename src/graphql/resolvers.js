@@ -1,6 +1,8 @@
 const axios = require('axios');
 const bcrypt = require('bcrypt'); // ✅ Importamos bcrypt para hashear la contraseña
 const User = require('../models/user');
+require('dotenv').config(); 
+
 
 const resolvers = {
     Mutation: {
@@ -15,11 +17,18 @@ const resolvers = {
                 const user = await User.create(input);
                 console.log("✅ Usuario creado exitosamente:", user.toJSON());
 
+         //       const instances = [
+        //            'http://127.0.0.1:5006/sync-create',
+       //             'http://127.0.0.1:5007/sync-create',
+       //             'http://127.0.0.1:5008/sync-create'
+     ///           ];
                 const instances = [
-                    'http://127.0.0.1:5006/sync-create',
-                    'http://127.0.0.1:5007/sync-create',
-                    'http://127.0.0.1:5008/sync-create'
+                    `http://${process.env.DB_HOST_READ}:5006/sync-create`,
+                    `http://${process.env.DB_HOST_UPDATE}:5007/sync-create`,
+                    `http://${process.env.DB_HOST_DELETE}:5008/sync-create`
                 ];
+
+
 
                 for (const instance of instances) {
                     try {
