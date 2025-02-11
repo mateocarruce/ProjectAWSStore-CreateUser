@@ -1,7 +1,7 @@
 const axios = require('axios');
 const bcrypt = require('bcrypt'); // ✅ Importamos bcrypt para hashear la contraseña
 const User = require('../models/user');
-//require('dotenv').config(); 
+require('dotenv').config(); 
 
 
 const resolvers = {
@@ -22,17 +22,17 @@ const resolvers = {
        //             'http://127.0.0.1:5007/sync-create',
        //             'http://127.0.0.1:5008/sync-create'
      ///    //       ];
-     //           const instances = [
-      //              `http://${process.env.DB_HOST_READ}:5006/sync-create`,
-       //             `http://${process.env.DB_HOST_UPDATE}:5007/sync-create`,
-        //            `http://${process.env.DB_HOST_DELETE}:5008/sync-create`
-         //       ];
-
-                const instances = [
-                    `http://34.194.54.221:5006/sync-create`,  // ReadUser
-                    `http://44.212.196.252:5007/sync-create`, // UpdateUser
-                    `http://3.218.7.57:5008/sync-create`      // DeleteUser
+               const instances = [
+                   `http://${process.env.DB_HOST_READ}:5006/sync-create`,
+                    `http://${process.env.DB_HOST_UPDATE}:5007/sync-create`,
+                  `http://${process.env.DB_HOST_DELETE}:5008/sync-create`
                 ];
+
+          //      const instances = [
+         //           `http://34.194.54.221:5006/sync-create`,  // ReadUser
+        //            `http://44.212.196.252:5007/sync-create`, // UpdateUser
+       //             `http://3.218.7.57:5008/sync-create`      // DeleteUser
+      //          ];
 
 
                 for (const instance of instances) {
