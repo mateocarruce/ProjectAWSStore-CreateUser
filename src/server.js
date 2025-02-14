@@ -30,7 +30,7 @@ sequelize.sync().then(() => {
     const server = new ApolloServer({ typeDefs, resolvers });
 
     server.listen({ port: 4005 }).then(({ url }) => {
-        console.log(`🚀 GraphQL server papito ready at ${url}`);
+        console.log(`🚀 GraphQL uwusnt server papito ready at ${url}`);
     });
 
     app.listen(5005, () => {
