@@ -28,10 +28,10 @@ jobs:
       run: |
         docker push mateocarr/projectawsstore-createuser:latest
 
-    - name: 🔑 Connect to EC2 and deploy container
+    - name: 🔑 Deploy to EC2 (Test & Main)
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.EC2_HOST_CREATE }}
+        host: ${{ secrets[format('EC2_HOST_{0}', github.ref_name == 'refs/heads/main' && 'MAIN' || 'CREATE')] }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
@@ -45,7 +45,7 @@ jobs:
           sudo docker stop createuser || true && sudo docker rm createuser || true
 
           # Crear el archivo .env desde el secreto de GitHub
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets[format('ENV_FILE_{0}', github.ref_name == 'refs/heads/main' && 'MAIN' || 'CREATE')] }}" > .env
 
           # Ejecutar el contenedor con el archivo .env
           sudo docker run -d -p 5005:5005 -p 4005:4005 --env-file .env --name createuser mateocarr/projectawsstore-createuser
